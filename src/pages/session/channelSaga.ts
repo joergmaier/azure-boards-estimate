@@ -138,7 +138,7 @@ export function subscribe(channel: IChannel) {
             emit(snapshotReceived(snapshot));
         });
 
-        // tslint:disable-next-line:no-empty
+        // eslint-disable-next-line no-empty,@typescript-eslint/no-empty-function
         return () => {};
     });
 }

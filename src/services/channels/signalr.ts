@@ -76,7 +76,7 @@ export class SignalRChannel implements IChannel {
 
         // Start connection
         await this.connection.start().catch(err => {
-            // tslint:disable-next-line:no-console
+            // eslint-disable-next-line no-console
             console.error(err.toString());
         });
 
