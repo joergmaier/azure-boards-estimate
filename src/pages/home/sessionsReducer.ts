@@ -35,7 +35,7 @@ const filter = reducerAction(Actions.filter, (state: ISessionsState, query) => {
         state.filteredSessions = null;
     } else {
         state.filteredSessions = state.sessions.filter(
-            x =>
+            (x) =>
                 x.name
                     .toLocaleLowerCase()
                     .indexOf(query.toLocaleLowerCase()) !== -1
@@ -85,7 +85,7 @@ export default <TPayload>(
     return reducerMap(action, state, {
         [Actions.loadSessions.type]: reducerAction(
             Actions.loadSessions,
-            state => {
+            (state) => {
                 state.loading = true;
             }
         ),

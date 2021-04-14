@@ -56,7 +56,8 @@ class SettingsPanel extends React.Component<
                 workItemType: IWorkItemType
             ) => {
                 const selectedIdx = (this.props.fields || []).findIndex(
-                    f => f.referenceName === workItemType.estimationFieldRefName
+                    (f) =>
+                        f.referenceName === workItemType.estimationFieldRefName
                 );
 
                 return (
@@ -81,7 +82,7 @@ class SettingsPanel extends React.Component<
                                             : undefined
                                 }),
                                 items: (this.props.fields || []).map(
-                                    f =>
+                                    (f) =>
                                         ({
                                             id: f.referenceName,
                                             text: f.name,

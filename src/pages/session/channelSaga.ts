@@ -52,7 +52,7 @@ export function* channelSaga(session: ISession): SagaIterator {
 export function* channelSenderSaga(sessionId: string, channel: IChannel) {
     yield takeEvery(
         [estimate.type, estimateUpdated.type, selectWorkItem.type, reveal.type],
-        function*(action: Action<any>) {
+        function* (action: Action<any>) {
             switch (action.type) {
                 case estimate.type:
                     yield call([channel, channel.estimate], action.payload);
@@ -103,16 +103,16 @@ export function* channelListenerSaga(channel: IChannel) {
 }
 
 export function subscribe(channel: IChannel) {
-    return eventChannel(emit => {
-        channel.setWorkItem.attachHandler(workItemId => {
+    return eventChannel((emit) => {
+        channel.setWorkItem.attachHandler((workItemId) => {
             emit(workItemSelected(workItemId));
         });
 
-        channel.estimate.attachHandler(e => {
+        channel.estimate.attachHandler((e) => {
             emit(estimateSet(e));
         });
 
-        channel.estimateUpdated.attachHandler(e => {
+        channel.estimateUpdated.attachHandler((e) => {
             emit(
                 estimateUpdated({
                     ...e,
@@ -121,11 +121,11 @@ export function subscribe(channel: IChannel) {
             );
         });
 
-        channel.join.attachHandler(payload => {
+        channel.join.attachHandler((payload) => {
             emit(userJoined(payload));
         });
 
-        channel.left.attachHandler(payload => {
+        channel.left.attachHandler((payload) => {
             emit(userLeft(payload));
         });
 
@@ -133,7 +133,7 @@ export function subscribe(channel: IChannel) {
             emit(revealed());
         });
 
-        channel.snapshot.attachHandler(snapshot => {
+        channel.snapshot.attachHandler((snapshot) => {
             // Snapshot received
             emit(snapshotReceived(snapshot));
         });

@@ -14,10 +14,16 @@ export class WorkItemHeader extends React.Component<IWorkItemHeaderProps> {
     private workItemUrl = "#";
 
     async componentDidMount() {
-        const locationService = await DevOps.getService<ILocationService>("ms.vss-features.location-service");
+        const locationService = await DevOps.getService<ILocationService>(
+            "ms.vss-features.location-service"
+        );
         this.workItemUrl = await locationService.routeUrl(
             "ms.vss-work-web.work-items-form-route-with-id",
-            { project: this.props.workItem.project, id: this.props.workItem.id.toString() });
+            {
+                project: this.props.workItem.project,
+                id: this.props.workItem.id.toString()
+            }
+        );
     }
 
     render(): JSX.Element {
@@ -33,7 +39,7 @@ export class WorkItemHeader extends React.Component<IWorkItemHeaderProps> {
                         href={this.workItemUrl}
                         target="_blank"
                         rel="noreferrer"
-                        onClick={async ev => {
+                        onClick={async (ev) => {
                             if (
                                 !ev.ctrlKey &&
                                 !ev.metaKey &&
@@ -42,9 +48,7 @@ export class WorkItemHeader extends React.Component<IWorkItemHeaderProps> {
                             ) {
                                 ev.preventDefault();
 
-                                const service = await DevOps.getService<
-                                    IWorkItemFormNavigationService
-                                >(
+                                const service = await DevOps.getService<IWorkItemFormNavigationService>(
                                     "ms.vss-work-web.work-item-form-navigation-service"
                                 );
                                 service.openWorkItem(id);

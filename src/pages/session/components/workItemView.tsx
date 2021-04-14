@@ -44,10 +44,12 @@ const Actions = {
 class WorkItemView extends React.Component<IWorkItemProps & typeof Actions> {
     eliminateDuplicates(estimates: IEstimate[]): IEstimate[] {
         return estimates.filter(
-            (estimate, index, estimatesList) => estimatesList.findIndex(
-                estimate2 => (estimate2.cardIdentifier === estimate.cardIdentifier)
-            ) === index
-        )
+            (estimate, index, estimatesList) =>
+                estimatesList.findIndex(
+                    (estimate2) =>
+                        estimate2.cardIdentifier === estimate.cardIdentifier
+                ) === index
+        );
     }
 
     render() {
@@ -76,7 +78,7 @@ class WorkItemView extends React.Component<IWorkItemProps & typeof Actions> {
                                         isPrimary: true,
                                         onActivate: this.doReveal
                                     } as IHeaderCommandBarItem)
-                            ].filter(x => !!x) as IHeaderCommandBarItem[]
+                            ].filter((x) => !!x) as IHeaderCommandBarItem[]
                         }
                     >
                         <WorkItemHeader workItem={selectedWorkItem} />
@@ -94,7 +96,7 @@ class WorkItemView extends React.Component<IWorkItemProps & typeof Actions> {
                             <SubTitle>Your vote</SubTitle>
                             <div className="card-container">
                                 {cardSet &&
-                                    cardSet.cards.map(card =>
+                                    cardSet.cards.map((card) =>
                                         this.renderCard(
                                             card,
                                             revealed,
@@ -132,9 +134,11 @@ class WorkItemView extends React.Component<IWorkItemProps & typeof Actions> {
                                                 to the work item:
                                             </div>
                                             <div>
-                                                {this.eliminateDuplicates(estimates || []).map(e => {
+                                                {this.eliminateDuplicates(
+                                                    estimates || []
+                                                ).map((e) => {
                                                     const card = cardSet.cards.find(
-                                                        x =>
+                                                        (x) =>
                                                             x.identifier ===
                                                             e.cardIdentifier
                                                     )!;
@@ -155,15 +159,22 @@ class WorkItemView extends React.Component<IWorkItemProps & typeof Actions> {
                                                 <>
                                                     <SubTitle>Average</SubTitle>
                                                     <div className="flex-column flex-self-start">
-                                                        {(estimates || []).reduce((sum, e) => {
+                                                        {(
+                                                            estimates || []
+                                                        ).reduce((sum, e) => {
                                                             const card = cardSet.cards.find(
-                                                                x =>
+                                                                (x) =>
                                                                     x.identifier ===
                                                                     e.cardIdentifier
                                                             )!;
-                                                            sum += parseInt((card!.value!.toString() || "0"));
+                                                            sum += parseInt(
+                                                                card!.value!.toString() ||
+                                                                    "0"
+                                                            );
                                                             return sum;
-                                                        }, 0) / (estimates!.length || 1)}
+                                                        }, 0) /
+                                                            (estimates!
+                                                                .length || 1)}
                                                     </div>
                                                 </>
                                             )}
@@ -243,28 +254,25 @@ class WorkItemView extends React.Component<IWorkItemProps & typeof Actions> {
     };
 }
 
-export default connect(
-    (state: IState) => {
-        const { session } = state;
+export default connect((state: IState) => {
+    const { session } = state;
 
-        const estimates = session.estimates[session.selectedWorkItem!.id];
+    const estimates = session.estimates[session.selectedWorkItem!.id];
 
-        const admin = canPerformAdminActions(state);
+    const admin = canPerformAdminActions(state);
 
-        return {
-            identity: state.init.currentIdentity!,
-            cardSet: session.cardSet!,
-            selectedWorkItem: session.selectedWorkItem!,
-            estimates,
-            revealed: session.revealed,
-            showAverage: session.cardSet!.type === CardSetType.Numeric,
-            canReveal:
-                admin && !session.revealed && estimates && estimates.length > 0,
-            selectedCardId:
-                state.session.ownEstimate &&
-                state.session.ownEstimate.cardIdentifier,
-            canPerformAdminActions: admin
-        };
-    },
-    Actions
-)(WorkItemView);
+    return {
+        identity: state.init.currentIdentity!,
+        cardSet: session.cardSet!,
+        selectedWorkItem: session.selectedWorkItem!,
+        estimates,
+        revealed: session.revealed,
+        showAverage: session.cardSet!.type === CardSetType.Numeric,
+        canReveal:
+            admin && !session.revealed && estimates && estimates.length > 0,
+        selectedCardId:
+            state.session.ownEstimate &&
+            state.session.ownEstimate.cardIdentifier,
+        canPerformAdminActions: admin
+    };
+}, Actions)(WorkItemView);

@@ -10,19 +10,19 @@ import { Dialog } from "azure-devops-ui/Dialog";
 import { Observer } from "azure-devops-ui/Observer";
 import { ObservableValue } from "azure-devops-ui/Core/Observable";
 
-const CardTitle: React.StatelessComponent = props => (
+const CardTitle: React.StatelessComponent = (props) => (
     <h2 className="session-card--title flex-grow" {...props} />
 );
 
-const CardMode: React.StatelessComponent = props => (
+const CardMode: React.StatelessComponent = (props) => (
     <div className="session-card--mode">{props.children}</div>
 );
 
 const CardInfo: React.StatelessComponent<{
     sessionInfo: ISessionInfo[];
-}> = props => (
+}> = (props) => (
     <div className="session-card--info">
-        {props.sessionInfo.map(info => (
+        {props.sessionInfo.map((info) => (
             <dl key={info.label}>
                 <dt>{info.label}</dt>
                 <dd>{info.value}</dd>
@@ -59,7 +59,7 @@ export class SessionCard extends React.Component<ICardProps> {
         const onDismissAndEndSession = () => {
             onDismiss();
             onEndSession(id);
-        }
+        };
 
         return (
             <div className="session-card">
@@ -89,7 +89,7 @@ export class SessionCard extends React.Component<ICardProps> {
                                                     text: "End session",
                                                     onActivate: () => {
                                                         this.isEndSessionDialogOpen.value = true;
-                                                        onEndSession(id)
+                                                        onEndSession(id);
                                                     }
                                                 }
                                             ]
@@ -97,8 +97,14 @@ export class SessionCard extends React.Component<ICardProps> {
                                     }}
                                 />
 
-                                <Observer isEndSessionDialogOpen={this.isEndSessionDialogOpen}>
-                                    {(props: { isEndSessionDialogOpen: boolean }) => {
+                                <Observer
+                                    isEndSessionDialogOpen={
+                                        this.isEndSessionDialogOpen
+                                    }
+                                >
+                                    {(props: {
+                                        isEndSessionDialogOpen: boolean;
+                                    }) => {
                                         return props.isEndSessionDialogOpen ? (
                                             <Dialog
                                                 titleProps={{ text: "Confirm" }}
@@ -115,8 +121,10 @@ export class SessionCard extends React.Component<ICardProps> {
                                                 ]}
                                                 onDismiss={onDismiss}
                                             >
-                                                Are you sure that you want to end this Estimate session?
-                                                This will end the session for every participant.
+                                                Are you sure that you want to
+                                                end this Estimate session? This
+                                                will end the session for every
+                                                participant.
                                             </Dialog>
                                         ) : null;
                                     }}

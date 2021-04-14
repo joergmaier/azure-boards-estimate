@@ -37,7 +37,7 @@ export class OfflineEstimationService implements IOfflineEstimationService {
         }
 
         const idx = estimates.findIndex(
-            x => x.identity.id === estimate.identity.id
+            (x) => x.identity.id === estimate.identity.id
         );
         if (idx !== -1) {
             estimates[idx] = estimate;

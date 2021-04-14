@@ -59,7 +59,7 @@ const leaveSession = reducerAction(
 const workItemSelected = reducerAction(
     Actions.selectWorkItem,
     (state: ISessionState, id) => {
-        const workItem = state.workItems.find(x => x.id === id);
+        const workItem = state.workItems.find((x) => x.id === id);
         if (!workItem) {
             throw new Error(`Cannot find work item with id ${id}`);
         }
@@ -82,7 +82,7 @@ const userJoined = reducerAction(
 );
 
 function addUser(state: ISessionState, userInfo: IUserInfo): void {
-    if (!state.activeUsers.find(x => x.tfId === userInfo.tfId)) {
+    if (!state.activeUsers.find((x) => x.tfId === userInfo.tfId)) {
         state.activeUsers.push(userInfo);
     }
 }
@@ -90,7 +90,7 @@ function addUser(state: ISessionState, userInfo: IUserInfo): void {
 const userLeft = reducerAction(
     Actions.userLeft,
     (state: ISessionState, userId) => {
-        state.activeUsers = state.activeUsers.filter(x => x.tfId !== userId);
+        state.activeUsers = state.activeUsers.filter((x) => x.tfId !== userId);
     }
 );
 
@@ -127,13 +127,13 @@ const estimateSet = reducerAction(
             // No selected work item, this means we have joined the session recently. Take the work item id of
             // this estimate as the selected work item.
             state.selectedWorkItem =
-                state.workItems.find(x => x.id === workItemId) || null;
+                state.workItems.find((x) => x.id === workItemId) || null;
         }
 
         if (cardIdentifier === null) {
             if (state.estimates[workItemId]) {
                 const idx = state.estimates[workItemId].findIndex(
-                    e => e.identity.id === identity.id
+                    (e) => e.identity.id === identity.id
                 );
                 if (idx >= 0) {
                     state.estimates[workItemId].splice(idx, 1);
@@ -151,7 +151,7 @@ const estimateSet = reducerAction(
                 state.estimates[workItemId] = [estimate];
             } else {
                 const idx = state.estimates[workItemId].findIndex(
-                    e => e.identity.id === identity.id
+                    (e) => e.identity.id === identity.id
                 );
                 if (idx === -1) {
                     // We don't have an estimate from this user
@@ -186,7 +186,9 @@ export default <TPayload>(
         [Actions.estimateUpdated.type]: reducerAction(
             Actions.estimateUpdated,
             (state, { workItemId, value }) => {
-                const workItem = state.workItems.find(x => x.id === workItemId);
+                const workItem = state.workItems.find(
+                    (x) => x.id === workItemId
+                );
                 if (workItem) {
                     workItem.estimate = value;
                 }
@@ -212,7 +214,7 @@ export default <TPayload>(
                     } = snapshot;
                     if (currentWorkItemId) {
                         const workItem = state.workItems.find(
-                            x => x.id === currentWorkItemId
+                            (x) => x.id === currentWorkItemId
                         );
                         if (!workItem) {
                             throw new Error(

@@ -7,7 +7,7 @@ var extensionPublisher = manifest.publisher;
 var extensionVersion = manifest.version;
 var extensionName = manifest.name;
 
-console.log("Packaging dev package...")
+console.log("Packaging dev package...");
 
 // Package extension
 var command = `tfx extension create --overrides-file configs/dev.json --manifest-globs vss-extension.json --extension-id ${extensionId}-dev --override "{ 'name': '${extensionName}-dev' }" --rev-version --no-prompt`;
@@ -22,7 +22,7 @@ exec(command, function (error, stdout, stderr) {
 
     console.log("Package created.");
 
-    console.log("Publishing dev package to the marketplace...")
+    console.log("Publishing dev package to the marketplace...");
 
     // Package extension
     var command = `tfx extension publish --vsix ${extensionPublisher}.${extensionId}-dev-${extensionVersion}.vsix --no-prompt`;

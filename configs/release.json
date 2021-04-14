@@ -1,7 +1,5 @@
 {
     "publisher": "ms-devlabs",
-    "galleryFlags": [
-        "Public"
-    ],
+    "galleryFlags": ["Public"],
     "public": true
 }

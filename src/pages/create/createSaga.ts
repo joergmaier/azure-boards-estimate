@@ -71,14 +71,12 @@ export function* createSessionSaga() {
     while (true) {
         yield take(Actions.create.type);
 
-        let session: ISession = yield select<IState>(x => x.create.session);
+        let session: ISession = yield select<IState>((x) => x.create.session);
 
         // Generate new id
         session = {
             ...session,
-            id: Math.random()
-                .toString(36)
-                .substr(2, 5)
+            id: Math.random().toString(36).substr(2, 5)
         };
 
         // Set creator's identity

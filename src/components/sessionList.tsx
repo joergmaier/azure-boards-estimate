@@ -18,7 +18,7 @@ export class SessionList extends React.Component<ICardListProps> {
 
         return (
             <ul className="session-list">
-                {sessions.map(session => (
+                {sessions.map((session) => (
                     <SessionCard
                         key={session.session.id}
                         session={session}

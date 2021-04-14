@@ -2,10 +2,7 @@
     "manifestVersion": 1,
     "version": "0.0.7",
     "name": "Estimate 2 Preview",
-    "scopes": [
-        "vso.work",
-        "vso.work_write"
-    ],
+    "scopes": ["vso.work", "vso.work_write"],
     "description": "",
     "publisher": "cschleiden",
     "id": "estimate",
@@ -17,12 +14,7 @@
             "id": "Microsoft.VisualStudio.Services.Cloud"
         }
     ],
-    "tags": [
-        "Work Items",
-        "Estimate",
-        "Planning",
-        "Poker"
-    ],
+    "tags": ["Work Items", "Estimate", "Planning", "Poker"],
     "content": {
         "details": {
             "path": "marketplace/details.md"
@@ -37,16 +29,12 @@
         "color": "rgb(220, 235, 252)",
         "theme": "light"
     },
-    "categories": [
-        "Plan and track"
-    ],
+    "categories": ["Plan and track"],
     "contributions": [
         {
             "id": "hub",
             "type": "ms.vss-web.hub",
-            "targets": [
-                "ms.vss-work-web.work-hub-group"
-            ],
+            "targets": ["ms.vss-work-web.work-hub-group"],
             "properties": {
                 "name": "Estimate 2",
                 "order": 99,
@@ -56,9 +44,7 @@
         {
             "id": "hub",
             "type": "ms.vss-web.hub",
-            "targets": [
-                "ms.vss-work-web.work-mobile-hub-group"
-            ],
+            "targets": ["ms.vss-work-web.work-mobile-hub-group"],
             "properties": {
                 "name": "Estimate 2",
                 "order": 99,

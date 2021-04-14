@@ -27,7 +27,7 @@ export class QueriesService implements IQueriesService {
             projectId
         );
 
-        return queries.map(q => ({
+        return queries.map((q) => ({
             id: q.id,
             name: q.name
         }));
@@ -38,9 +38,9 @@ export class QueriesService implements IQueriesService {
         const result = await client.queryById(queryId, projectId);
 
         if (result.workItems) {
-            return result.workItems.map(x => x.id);
+            return result.workItems.map((x) => x.id);
         } else if (result.workItemRelations) {
-            return result.workItemRelations.map(x => x.target.id);
+            return result.workItemRelations.map((x) => x.target.id);
         }
 
         return [];

@@ -38,7 +38,7 @@ export class SprintService implements ISprintService {
                         iterationId
                     )
                     .then(
-                        x =>
+                        (x) =>
                             ({
                                 id: x.id,
                                 name: x.name
@@ -48,7 +48,7 @@ export class SprintService implements ISprintService {
             )
         );
 
-        return result.filter(x => x !== null) as IIteration[];
+        return result.filter((x) => x !== null) as IIteration[];
     }
 
     async getWorkItems(
@@ -70,6 +70,6 @@ export class SprintService implements ISprintService {
             iterationId
         );
 
-        return iterationWorkItems.workItemRelations.map(x => x.target.id);
+        return iterationWorkItems.workItemRelations.map((x) => x.target.id);
     }
 }

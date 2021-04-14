@@ -226,13 +226,11 @@ export function* sessionSaga(action: ReturnType<typeof loadSession>) {
  */
 function* sessionEstimationSaga(): SagaIterator {
     while (true) {
-        const action: any = yield take(
-            commitEstimate
-        );
+        const action: any = yield take(commitEstimate);
         const value = action.payload;
 
         const workItem: any = yield select<IState>(
-            s => s.session.selectedWorkItem
+            (s) => s.session.selectedWorkItem
         );
         if (!workItem || !value) {
             continue;
@@ -273,9 +271,11 @@ function* sessionEstimationSaga(): SagaIterator {
 
             // Move to next work item, if it exists or to first one
             const workItems: any = yield select<IState>(
-                s => s.session.workItems
+                (s) => s.session.workItems
             );
-            const idx = workItems.findIndex((x: IWorkItem) => x.id === workItem.id);
+            const idx = workItems.findIndex(
+                (x: IWorkItem) => x.id === workItem.id
+            );
             const nextWorkItemId =
                 idx + 1 < workItems.length
                     ? workItems[idx + 1].id
@@ -287,12 +287,10 @@ function* sessionEstimationSaga(): SagaIterator {
 
 function* notificationSaga(): SagaIterator {
     while (true) {
-        const action: any = yield take(
-            estimateUpdated
-        );
+        const action: any = yield take(estimateUpdated);
 
         const workItem: any = yield select<IState>(
-            s => s.session.selectedWorkItem
+            (s) => s.session.selectedWorkItem
         );
         if (workItem && workItem.id !== action.payload.workItemId) {
             // Only show message if the current work item is the one the estimate was updated for

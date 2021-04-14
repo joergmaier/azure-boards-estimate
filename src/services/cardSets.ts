@@ -11,7 +11,7 @@ export const CardSetServiceId = "CardSetService";
 
 export class MockCardSetService implements ICardSetService {
     async getSet(cardSetId: string): Promise<ICardSet> {
-        return defaultCardSets.filter(cs => cs.id === cardSetId)[0];
+        return defaultCardSets.filter((cs) => cs.id === cardSetId)[0];
     }
 
     async getSets(): Promise<ICardSet[]> {

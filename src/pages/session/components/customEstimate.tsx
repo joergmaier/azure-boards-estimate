@@ -4,7 +4,7 @@ import { Button } from "azure-devops-ui/Button";
 
 export const CustomEstimate: React.FC<{
     commitEstimate: (value: string) => void;
-}> = props => {
+}> = (props) => {
     const [value, setValue]: [any, any] = React.useState();
 
     return (
@@ -12,7 +12,9 @@ export const CustomEstimate: React.FC<{
             <TextField
                 value={value}
                 onChange={(
-                    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+                    event: React.ChangeEvent<
+                        HTMLInputElement | HTMLTextAreaElement
+                    >,
                     value: string
                 ) => {
                     setValue(value);

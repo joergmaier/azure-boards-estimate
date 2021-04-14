@@ -27,9 +27,9 @@ export type IOutgoing<TPayload> = (payload: TPayload) => Promise<void>;
 export type IBiDirectional<TPayload> = IIncoming<TPayload> &
     IOutgoing<TPayload>;
 
-export function defineIncomingOperation<TPayload>(): IInternalIncoming<
+export function defineIncomingOperation<
     TPayload
-> {
+>(): IInternalIncoming<TPayload> {
     const handlers: IHandler<TPayload>[] = [];
 
     return {

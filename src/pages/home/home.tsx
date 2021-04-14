@@ -49,7 +49,7 @@ class HomePage extends React.Component<IHomePageProps & typeof Actions> {
         super(props);
 
         this.filter = new Filter();
-        this.filter.subscribe(state => {
+        this.filter.subscribe((state) => {
             props.filter(state["keyword"] && state["keyword"]!.value);
         });
     }
@@ -144,7 +144,7 @@ class HomePage extends React.Component<IHomePageProps & typeof Actions> {
                             (this.props.match.params.ids &&
                                 this.props.match.params.ids
                                     .split(",")
-                                    .map<number>(x => parseInt(x, 10))) ||
+                                    .map<number>((x) => parseInt(x, 10))) ||
                             undefined
                         }
                     />

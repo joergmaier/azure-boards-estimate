@@ -61,9 +61,9 @@ export class QueryPicker extends React.Component<
     async componentDidMount() {
         const { defaultSelectedQueryId } = this.props;
 
-        const projectService: IProjectPageService = await DevOps.getService<
-            IProjectPageService
-        >("ms.vss-tfs-web.tfs-page-data-service");
+        const projectService: IProjectPageService = await DevOps.getService<IProjectPageService>(
+            "ms.vss-tfs-web.tfs-page-data-service"
+        );
         const project = await projectService.getProject();
 
         const queryItems = await getClient(
@@ -71,7 +71,7 @@ export class QueryPicker extends React.Component<
         ).getQueries(project!.id, 4, 0);
 
         // Only take Shared Queries
-        this._mapQueryItems(queryItems.filter(x => x.isPublic));
+        this._mapQueryItems(queryItems.filter((x) => x.isPublic));
 
         if (defaultSelectedQueryId) {
             await this.setInitial(defaultSelectedQueryId);
@@ -88,9 +88,9 @@ export class QueryPicker extends React.Component<
         const client = getClient(WorkItemTrackingRestClient);
 
         // If selected query id is given, build up tree
-        const projectService: IProjectPageService = await DevOps.getService<
-            IProjectPageService
-        >("ms.vss-tfs-web.tfs-page-data-service");
+        const projectService: IProjectPageService = await DevOps.getService<IProjectPageService>(
+            "ms.vss-tfs-web.tfs-page-data-service"
+        );
         const project = await projectService.getProject();
         const queryItem = await client.getQuery(project!.id, id, 4, 0);
 
@@ -197,7 +197,7 @@ export class QueryPicker extends React.Component<
                     if (treeItem.childrenFetched) {
                         stack.push(
                             ...treeItem.item.children
-                                .map(c => this.queryTreeLookup[c.id])
+                                .map((c) => this.queryTreeLookup[c.id])
                                 .reverse()
                         );
                     } else {
@@ -258,7 +258,7 @@ export class QueryPicker extends React.Component<
                                 ? "ChevronDown"
                                 : "ChevronRight"
                         }}
-                        onClick={ev => this._toggle(ev, option)}
+                        onClick={(ev) => this._toggle(ev, option)}
                     />
                 )}
                 {!option.hasChildren && (
@@ -299,7 +299,7 @@ export class QueryPicker extends React.Component<
                 parentItem.item.children = [];
             }
 
-            if (!parentItem.item.children.some(i => i.id === queryItem.id)) {
+            if (!parentItem.item.children.some((i) => i.id === queryItem.id)) {
                 parentItem.item.children.push(queryItem);
 
                 // Ensure children are sorted
@@ -325,14 +325,14 @@ export class QueryPicker extends React.Component<
         queryTreeItem.isExpanded = !queryTreeItem.isExpanded;
 
         if (!queryTreeItem.childrenFetched) {
-            const projectService: IProjectPageService = await DevOps.getService<
-                IProjectPageService
-            >("ms.vss-tfs-web.tfs-page-data-service");
+            const projectService: IProjectPageService = await DevOps.getService<IProjectPageService>(
+                "ms.vss-tfs-web.tfs-page-data-service"
+            );
             const project = await projectService.getProject();
 
             getClient(WorkItemTrackingRestClient)
                 .getQuery(project!.id, option.key as string, 4, 1)
-                .then(queryItem => {
+                .then((queryItem) => {
                     // Add in items
                     queryTreeItem.childrenFetched = true;
 

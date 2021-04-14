@@ -6,7 +6,7 @@ import { IEstimate } from "../../model/estimate";
 import { ISnapshot } from "../../model/snapshots";
 
 export class OfflineChannel implements IChannel {
-    estimate = defineOperation<IEstimate>(async estimate => {
+    estimate = defineOperation<IEstimate>(async (estimate) => {
         // Store estimate
         await this.estimationService.estimate(this.sessionId, estimate);
 
@@ -17,11 +17,11 @@ export class OfflineChannel implements IChannel {
     estimateUpdated = defineOperation<{
         workItemId: number;
         value: number | string | undefined;
-    }>(async payload => {
+    }>(async (payload) => {
         await this.estimateUpdated.incoming(payload);
     });
 
-    setWorkItem = defineOperation<number>(async workItemId => {
+    setWorkItem = defineOperation<number>(async (workItemId) => {
         await this.setWorkItem.incoming(workItemId);
 
         // After switching the work item, we need to replay all estimates for the work item
@@ -39,7 +39,7 @@ export class OfflineChannel implements IChannel {
         await this.revealed.incoming(undefined);
     });
 
-    join = defineOperation<IUserInfo>(async p => {
+    join = defineOperation<IUserInfo>(async (p) => {
         // Do nothing for this channel.
     });
 

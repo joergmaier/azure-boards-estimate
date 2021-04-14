@@ -10,7 +10,7 @@ import Session from "./pages/session/session";
 
 DevOps.getService<IHostNavigationService>(
     "ms.vss-features.host-navigation-service"
-).then(navService => {
+).then((navService) => {
     const navigate = (hash: string) => {
         history.replace(hash.replace("#", ""));
     };
@@ -23,7 +23,7 @@ DevOps.getService<IHostNavigationService>(
     navService.onHashChanged(navigate);
 
     // Send navigation updates to host frame
-    history.listen(x => {
+    history.listen((x) => {
         navService.replaceHash(x.pathname);
     });
 });

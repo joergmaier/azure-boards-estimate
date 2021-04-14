@@ -75,7 +75,7 @@ export class SessionService implements ISessionService {
                     manager.getDocuments(await this._getCollection(), {
                         defaultValue: []
                     })
-                ].map(p => p.catch(() => []))
+                ].map((p) => p.catch(() => []))
             );
 
             return sessions.flat();
@@ -92,7 +92,7 @@ export class SessionService implements ISessionService {
                 "EstimationSessions"
             );
 
-            return legacySession.map<ISession>(ls => ({
+            return legacySession.map<ISession>((ls) => ({
                 id: ls.id,
                 name: `Migrated: '${ls.name}'`,
                 mode: SessionMode.Online,

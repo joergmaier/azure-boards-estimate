@@ -185,7 +185,6 @@ export const defaultCardSets: ICardSet[] = [
                 identifier: "5",
                 value: 5
             }
-
         ]
     }
 ];

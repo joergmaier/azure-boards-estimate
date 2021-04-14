@@ -46,7 +46,7 @@ export class WorkItemService implements IWorkItemService {
         const client = getClient(WorkItemTrackingRestClient);
         const fields = await client.getFields(projectId);
 
-        const mappedFields: IField[] = fields.map(f => ({
+        const mappedFields: IField[] = fields.map((f) => ({
             name: f.name,
             referenceName: f.referenceName
         }));
@@ -74,12 +74,12 @@ export class WorkItemService implements IWorkItemService {
             [name: string]: IWorkItemType;
         }>(projectId, FieldConfiguration);
 
-        return workItemTypes.map(wi => {
+        return workItemTypes.map((wi) => {
             let estimationFieldRefName: string | undefined;
 
             if (
                 wi.fields.some(
-                    f =>
+                    (f) =>
                         f.referenceName.toLocaleLowerCase() ===
                         effortField.referenceName.toLocaleLowerCase()
                 )
@@ -122,7 +122,7 @@ export class WorkItemService implements IWorkItemService {
             errorPolicy: 2 /* Omit */
         } as WorkItemBatchGetRequest);
 
-        const mappedWorkItems: IWorkItem[] = workItems.map(wi => {
+        const mappedWorkItems: IWorkItem[] = workItems.map((wi) => {
             return {
                 project: wi.fields["System.TeamProject"],
                 id: wi.id,
@@ -173,7 +173,7 @@ export class WorkItemService implements IWorkItemService {
                     const witEstimationFieldRefNameMapping: {
                         [workItemTypeName: string]: string | undefined;
                     } = {};
-                    currentProjectWorkItemTypes.forEach(workItemType => {
+                    currentProjectWorkItemTypes.forEach((workItemType) => {
                         witEstimationFieldRefNameMapping[workItemType.name] =
                             workItemType.estimationFieldRefName;
                     });
@@ -194,14 +194,14 @@ export class WorkItemService implements IWorkItemService {
                         const witNameToRefNameMapping: {
                             [name: string]: string;
                         } = {};
-                        workItemTypes.forEach(x => {
+                        workItemTypes.forEach((x) => {
                             witNameToRefNameMapping[x.name] = x.referenceName;
                         });
 
                         // Get work item type definitions
                         await Promise.all(
                             Array.from(projectInfo.workItemTypes.keys()).map(
-                                async workItemTypeName => {
+                                async (workItemTypeName) => {
                                     const workItemType = await processClient.getProcessWorkItemType(
                                         processTypeId,
                                         witNameToRefNameMapping[
@@ -231,7 +231,7 @@ export class WorkItemService implements IWorkItemService {
                         );
                     } else {
                         // XML customization
-                        currentProjectWorkItemTypes.forEach(workItemType => {
+                        currentProjectWorkItemTypes.forEach((workItemType) => {
                             projectInfo.workItemTypes.set(workItemType.name, {
                                 icon: workItemType.icon && workItemType.icon.id,
                                 color: workItemType.color,
@@ -270,7 +270,7 @@ export class WorkItemService implements IWorkItemService {
         );
 
         const mappedWorkItemsById: { [id: number]: IWorkItem } = {};
-        mappedWorkItems.forEach(x => (mappedWorkItemsById[x.id] = x));
+        mappedWorkItems.forEach((x) => (mappedWorkItemsById[x.id] = x));
 
         for (const workItemFieldData of workItemsFieldData) {
             try {
@@ -303,8 +303,8 @@ export class WorkItemService implements IWorkItemService {
 
         // And, we're done. Just return in input order
         return workItemIds
-            .map(workItemId => mappedWorkItemsById[workItemId])
-            .filter(x => !!x);
+            .map((workItemId) => mappedWorkItemsById[workItemId])
+            .filter((x) => !!x);
     }
 
     async saveEstimate(

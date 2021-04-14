@@ -5,7 +5,7 @@ import { IIdentity } from "./model/identity";
 import { IdentityServiceId, IIdentityService } from "./services/identity";
 import { Services } from "./services/services";
 
-export function* initSaga() : SagaIterator {
+export function* initSaga(): SagaIterator {
     const identityService = Services.getService<IIdentityService>(
         IdentityServiceId
     );

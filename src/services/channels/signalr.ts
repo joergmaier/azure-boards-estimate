@@ -20,18 +20,18 @@ enum Action {
 }
 
 export class SignalRChannel implements IChannel {
-    estimate = defineOperation<IEstimate>(async estimate => {
+    estimate = defineOperation<IEstimate>(async (estimate) => {
         await this.sendToOtherClients(Action.Estimate, estimate);
     });
 
     estimateUpdated = defineOperation<{
         workItemId: number;
         value: number | string | undefined;
-    }>(async payload => {
+    }>(async (payload) => {
         await this.sendToOtherClients(Action.EstimateUpdated, payload);
     });
 
-    setWorkItem = defineOperation<number>(async workItemId => {
+    setWorkItem = defineOperation<number>(async (workItemId) => {
         await this.sendToOtherClients(Action.Switch, workItemId);
     });
 
@@ -39,7 +39,7 @@ export class SignalRChannel implements IChannel {
         await this.sendToOtherClients(Action.Reveal, null);
     });
 
-    join = defineOperation<IUserInfo>(async userInfo => {
+    join = defineOperation<IUserInfo>(async (userInfo) => {
         if (this.connection) {
             await this.connection.send(Action.Join, this.sessionId, userInfo);
         }
@@ -47,7 +47,7 @@ export class SignalRChannel implements IChannel {
 
     left = defineIncomingOperation<string>();
 
-    snapshot = defineOperation<ISnapshot>(async snapshot => {
+    snapshot = defineOperation<ISnapshot>(async (snapshot) => {
         await this.sendToOtherClients(Action.Snapshot, snapshot);
     });
 
@@ -64,9 +64,7 @@ export class SignalRChannel implements IChannel {
 
         this.connection = new signalR.HubConnectionBuilder()
             .withUrl(
-                `${baseUrl}/estimate?sessionId=${this.sessionId}&tfId=${
-                    identity.id
-                }`
+                `${baseUrl}/estimate?sessionId=${this.sessionId}&tfId=${identity.id}`
             )
             .configureLogging(signalR.LogLevel.Information)
             .build();
@@ -75,7 +73,7 @@ export class SignalRChannel implements IChannel {
         this.connection.on("broadcast", this.onReceive);
 
         // Start connection
-        await this.connection.start().catch(err => {
+        await this.connection.start().catch((err) => {
             // eslint-disable-next-line no-console
             console.error(err.toString());
         });

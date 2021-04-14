@@ -109,7 +109,7 @@ class Session extends React.Component<
                     </HeaderTitleArea>
 
                     <div className="session--active-users flex-row flex-justify-end flex-center flex-self-stretch">
-                        {activeUsers.map(u => (
+                        {activeUsers.map((u) => (
                             <Tooltip key={u.tfId} text={u.name}>
                                 <div>
                                     <VssPersona
@@ -147,14 +147,14 @@ class Session extends React.Component<
                                     }
                                 }) ||
                                     undefined
-                            ].filter(x => !!x) as IHeaderCommandBarItem[]
+                            ].filter((x) => !!x) as IHeaderCommandBarItem[]
                         }
                     />
                 </CustomHeader>
 
                 <div className="page-content page-content-top flex-row session-content">
                     <div className="work-item-list v-scroll-auto flex-column custom-scrollbar flex-noshrink">
-                        {workItems.map(workItem => (
+                        {workItems.map((workItem) => (
                             <WorkItemCard
                                 key={workItem.id}
                                 cardSet={cardSet}
@@ -186,19 +186,16 @@ class Session extends React.Component<
     }
 }
 
-export default connect(
-    (state: IState) => {
-        return {
-            identity: state.init.currentIdentity,
-            status: state.session.status,
-            session: state.session.session,
-            cardSet: state.session.cardSet,
-            workItems: state.session.workItems,
-            estimates: state.session.estimates,
-            selectedWorkItem: state.session.selectedWorkItem,
-            activeUsers: getActiveUsers(state),
-            canPerformAdminActions: canPerformAdminActions(state)
-        };
-    },
-    Actions
-)(Session);
+export default connect((state: IState) => {
+    return {
+        identity: state.init.currentIdentity,
+        status: state.session.status,
+        session: state.session.session,
+        cardSet: state.session.cardSet,
+        workItems: state.session.workItems,
+        estimates: state.session.estimates,
+        selectedWorkItem: state.session.selectedWorkItem,
+        activeUsers: getActiveUsers(state),
+        canPerformAdminActions: canPerformAdminActions(state)
+    };
+}, Actions)(Session);

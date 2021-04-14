@@ -28,7 +28,7 @@ export default <TPayload>(
             Actions.setField,
             (state, payload) => {
                 const workItemType = state.workItemTypes.find(
-                    x => x.name === payload.name
+                    (x) => x.name === payload.name
                 );
                 if (workItemType) {
                     workItemType.estimationFieldRefName =
@@ -36,7 +36,7 @@ export default <TPayload>(
                 }
             }
         ),
-        [Actions.close.type]: reducerAction(Actions.close, state => {
+        [Actions.close.type]: reducerAction(Actions.close, (state) => {
             return initialState;
         })
     });

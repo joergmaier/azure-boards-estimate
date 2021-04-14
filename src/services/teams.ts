@@ -37,9 +37,9 @@ export class TeamService implements ITeamService {
     }
 
     public async getIterationsForTeam(teamId: string): Promise<IIteration[]> {
-        const projectService: IProjectPageService = await DevOps.getService<
-            IProjectPageService
-        >("ms.vss-tfs-web.tfs-page-data-service");
+        const projectService: IProjectPageService = await DevOps.getService<IProjectPageService>(
+            "ms.vss-tfs-web.tfs-page-data-service"
+        );
         const project = await projectService.getProject();
         if (!project) {
             throw new Error("Project is required");

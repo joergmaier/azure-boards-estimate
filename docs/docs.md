@@ -1,7 +1,6 @@
 ## Client joining
 
-| Description |Client | Hub |
-|---|---|---|
-| Client connects | Join | |
-|||Every client sends |
-
+| Description     | Client | Hub                |
+| --------------- | ------ | ------------------ |
+| Client connects | Join   |                    |
+|                 |        | Every client sends |

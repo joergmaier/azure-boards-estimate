@@ -37,7 +37,7 @@ export enum CardSize {
     medium
 }
 
-export enum CardState { }
+export enum CardState {}
 
 export interface ICardData {
     label: string;
@@ -87,54 +87,58 @@ export class Card extends React.Component<ICardComponentProps> {
             fontSize: getFontSize(size)
         };
 
-        const content: JSX.Element = <div
-            className="card--flip"
-            style={{
-                width: `${getWidth(size)}px`,
-                height: `${getHeight(size)}px`
-            }}
-        >
+        const content: JSX.Element = (
             <div
-                className={css(
-                    "card--frame",
-                    "card--front",
-                    cardClassNames
-                )}
-                style={cardStyle}
+                className="card--flip"
+                style={{
+                    width: `${getWidth(size)}px`,
+                    height: `${getHeight(size)}px`
+                }}
             >
-                {this.renderCard(front)}
-            </div>
-            {back && (
                 <div
                     className={css(
                         "card--frame",
-                        "card--back",
+                        "card--front",
                         cardClassNames
                     )}
                     style={cardStyle}
                 >
-                    {this.renderCard(back)}
+                    {this.renderCard(front)}
                 </div>
-            )}
-        </div>
+                {back && (
+                    <div
+                        className={css(
+                            "card--frame",
+                            "card--back",
+                            cardClassNames
+                        )}
+                        style={cardStyle}
+                    >
+                        {this.renderCard(back)}
+                    </div>
+                )}
+            </div>
+        );
 
         const cssClassName: string = css(
             className,
             onClick && "card--base-button",
             !onClick && "card--base"
-        )
+        );
 
         return (
             <React.Fragment>
-                {
-                    onClick ? <button className={cssClassName}
+                {onClick ? (
+                    <button
+                        className={cssClassName}
                         disabled={disabled}
-                        onClick={onClick}>
+                        onClick={onClick}
+                    >
                         {content}
-                    </button> : <div className={cssClassName}>
-                            {content}
-                        </div>
-                }
+                    </button>
+                ) : (
+                    <div className={cssClassName}>{content}</div>
+                )}
             </React.Fragment>
         );
     }

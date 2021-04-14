@@ -80,7 +80,7 @@ export function* initSaga(): SagaIterator {
             teamAndIterationIds
         );
 
-        yield put(setIterationLookup(toLookup(iterations, x => x.id)));
+        yield put(setIterationLookup(toLookup(iterations, (x) => x.id)));
     }
 
     // Resolve teams
@@ -90,7 +90,7 @@ export function* initSaga(): SagaIterator {
         projectInfo.id
     );
 
-    yield put(setTeamLookup(toLookup(teams, t => t.id)));
+    yield put(setTeamLookup(toLookup(teams, (t) => t.id)));
 
     // Resolve queries
     const queryIds: string[] = sessions
@@ -102,12 +102,12 @@ export function* initSaga(): SagaIterator {
             QueriesServiceId
         );
 
-        const queries : any = yield call(
+        const queries: any = yield call(
             [queriesService, queriesService.getQueries],
             projectInfo.id,
             queryIds
         );
-        yield put(setQueryLookup(toLookup(queries, q => q.id)));
+        yield put(setQueryLookup(toLookup(queries, (q) => q.id)));
     }
 }
 

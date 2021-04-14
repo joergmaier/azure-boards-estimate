@@ -26,7 +26,7 @@ export class CardSetPicker extends React.Component<ICardSetPickerProps> {
                 selectedKey={selectedCardSetId}
                 options={
                     (cardSets &&
-                        cardSets.map(cs => ({
+                        cardSets.map((cs) => ({
                             key: cs.id,
                             text: cs.name,
                             ...cs
@@ -44,7 +44,7 @@ export class CardSetPicker extends React.Component<ICardSetPickerProps> {
     private renderCardSet = (cardSet: ISelectableOption & ICardSet) => {
         return (
             <div className="card-set-picker">
-                {cardSet.cards.map(c => (
+                {cardSet.cards.map((c) => (
                     <Card
                         key={c.identifier}
                         disabled={true}

@@ -22,13 +22,13 @@ export class Votes extends React.Component<IVotesProps> {
 
         return (
             <div className="flex-row">
-                {votes.map(vote => (
+                {votes.map((vote) => (
                     <Vote
                         key={vote.identity.id}
                         identity={vote.identity}
                         card={
                             cardSet.cards.find(
-                                x => x.identifier === vote.cardIdentifier
+                                (x) => x.identifier === vote.cardIdentifier
                             )!
                         }
                         revealed={!!revealed}

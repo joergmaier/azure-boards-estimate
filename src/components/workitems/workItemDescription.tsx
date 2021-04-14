@@ -4,7 +4,7 @@ import { IWorkItem } from "../../model/workitem";
 
 export const WorkItemDescription: React.StatelessComponent<{
     workItem: IWorkItem;
-}> = props => (
+}> = (props) => (
     <div className="work-item-description">
         <div
             className="html-content"

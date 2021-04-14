@@ -18,6 +18,6 @@ export function reducerAction<TState, TPayload>(
     handler: (state: Draft<TState>, payload: TPayload) => void
 ): (state: TState, payload: TPayload) => TState {
     return (state: TState, payload: TPayload): TState => {
-        return produce(state, draft => handler(draft, payload));
+        return produce(state, (draft) => handler(draft, payload));
     };
 }

@@ -293,7 +293,7 @@ class CreatePanel extends React.Component<
                             disabled={teams === null}
                             options={
                                 (teams &&
-                                    teams.map(t => ({
+                                    teams.map((t) => ({
                                         key: t.id,
                                         text: t.name
                                     }))) || [
@@ -310,7 +310,7 @@ class CreatePanel extends React.Component<
                             disabled={iterations === null}
                             options={
                                 (iterations &&
-                                    iterations.map(t => ({
+                                    iterations.map((t) => ({
                                         key: t.id,
                                         text: t.name
                                     }))) || [
