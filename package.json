@@ -37,7 +37,7 @@
     "package-release": "tfx extension create --manifest-globs azure-devops-extension.json --overrides-file ./configs/release.json --root ./"
   },
   "devDependencies": {
-    "tfx-cli": "^0.8.3"
+    "tfx-cli": "^0.9.0"
   },
   "eslintConfig": {
     "extends": [
