@@ -32,11 +32,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "lint": "prettier --check --end-of-line=auto .",
+    "format": "prettier --write --end-of-line=auto .",
     "package-dev": "tfx extension create --manifest-globs azure-devops-extension.json --overrides-file ./configs/dev.json --root ./",
     "package-release-internal": "tfx extension create --manifest-globs azure-devops-extension.json --overrides-file ./configs/release-internal.json --root ./",
     "package-release": "tfx extension create --manifest-globs azure-devops-extension.json --overrides-file ./configs/release.json --root ./"
   },
   "devDependencies": {
+    "prettier": "2.2.1",
     "tfx-cli": "^0.9.0"
   },
   "eslintConfig": {
