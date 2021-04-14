@@ -1,5 +1,7 @@
 import "core-js";
 
+/* eslint no-extend-native: ["error", { "exceptions": ["Array"] }] */
+
 export function addPolyFills() {
     if (!Array.prototype.flat) {
         Array.prototype.flat = function () {
