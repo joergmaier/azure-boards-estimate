@@ -16,10 +16,9 @@ jobs:
             - run: npm run lint
             - run: npm run build
             - run: npm run package-release
-#     - task: ms-devlabs.vsts-developer-tools-build-tasks.publish-extension-build-task.PublishExtension@1
-#       displayName: "Publish Extension"
-#       inputs:
-#           connectedServiceName: Marketplace ms-devlabs
-#           fileType: vsix
-#           vsixFile: "ms-devlabs.estimate-*.vsix"
-#           updateTasksVersion: false
+            - name: Upload a Build Artifact
+              uses: actions/upload-artifact@v2.2.3
+              with:
+                  name: vsix
+                  path: "-*.vsix"
+                  if-no-files-found: fail
