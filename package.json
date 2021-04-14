@@ -15,7 +15,6 @@
     "azure-devops-ui": "^2.166.99",
     "core-js": "^3.6.5",
     "immer": "^9.0.1",
-    "node-sass": "4.14.1",
     "office-ui-fabric-react": "^7.147.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -24,6 +23,7 @@
     "react-scripts": "^4.0.0",
     "redux": "^4.0.5",
     "redux-saga": "^0.16.2",
+    "sass": "^1.32.8",
     "typescript": "^4.0.3",
     "typescript-fsa": "^3.0.0"
   },
