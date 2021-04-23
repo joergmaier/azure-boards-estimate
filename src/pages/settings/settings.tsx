@@ -2,6 +2,7 @@ import { Dropdown } from "azure-devops-ui/Dropdown";
 import { TitleSize } from "azure-devops-ui/Header";
 import { ListSelection } from "azure-devops-ui/List";
 import { IListBoxItem } from "azure-devops-ui/ListBox";
+import { TextField } from "azure-devops-ui/TextField";
 import { Panel } from "azure-devops-ui/Panel";
 import {
     ITableColumn,
@@ -16,7 +17,7 @@ import { connect } from "react-redux";
 import { IField, IWorkItemType } from "../../model/workItemType";
 import { IState } from "../../reducer";
 import "./settings.scss";
-import { close, init, setField } from "./settingsActions";
+import { close, init, setField, setBackendUrl } from "./settingsActions";
 
 export interface ISettingsPanelOwnProps {
     onDismiss(): void;
@@ -25,6 +26,7 @@ export interface ISettingsPanelOwnProps {
 interface ISettingsPanelProps {
     workItemTypes: IWorkItemType[];
     fields: null | IField[];
+    baseUrl: string;
     loading: boolean;
 }
 
@@ -107,6 +109,13 @@ class SettingsPanel extends React.Component<
             estimationFieldRefName: item.data!.referenceName
         });
     };
+    private onBaseUrlChange = (
+        baseUrl: string
+    )  => {
+        this.props.setBackendUrl({
+            baseUrl: baseUrl
+        });
+    };
 
     public componentDidMount() {
         this.props.init();
@@ -142,6 +151,12 @@ class SettingsPanel extends React.Component<
                             field type.
                         </p>
 
+                        <TextField
+                            value={this.props.baseUrl}
+                            onSelect={this.onBaseUrlChange.bind(
+                                this
+                            )}
+                        />
                         <Table<IWorkItemType>
                             columns={this.columns}
                             itemProvider={

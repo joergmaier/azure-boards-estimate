@@ -7,7 +7,10 @@ export const init = factory<void>("init");
 export const loaded = factory<{
     workItemTypes: IWorkItemType[];
     fields: IField[];
+    baseUrl: string;
 }>("loaded");
 export const close = factory("close");
 
 export const setField = factory<IWorkItemType>("setField");
+
+export const setBackendUrl = factory<string>("setBackendUrl");

@@ -38,6 +38,11 @@ export const SessionServiceId = "SessionService";
  */
 export const FieldConfiguration = "field-configuration";
 
+/**
+ * Storage key for the backend URL
+ */
+export const BackendConfiguration = "backend-configuration";
+
 export class SessionService implements ISessionService {
     private manager: IExtensionDataManager | undefined;
 

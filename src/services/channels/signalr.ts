@@ -5,8 +5,13 @@ import { IdentityServiceId, IIdentityService } from "../identity";
 import { Services } from "../services";
 import { defineIncomingOperation, defineOperation, IChannel } from "./channels";
 import { ISnapshot } from "../../model/snapshots";
+import {
+    SessionServiceId,
+    ISessionService,
+    BackendConfiguration
+} from "../sessions";
 
-const baseUrl = "https://estimate.hangy.de";
+const fallbackUrl = "https://estimate.hangy.de";
 
 enum Action {
     Join = "join",
@@ -54,8 +59,22 @@ export class SignalRChannel implements IChannel {
     private connection: signalR.HubConnection | undefined;
     private sessionId: string = "";
 
-    async start(sessionId: string): Promise<void> {
+    async start(projectId: string, sessionId: string): Promise<void> {
         this.sessionId = sessionId;
+
+        const sessionService = Services.getService<ISessionService>(
+            SessionServiceId
+        );
+        const configuration = await sessionService.getSettingsValue<{
+            baseUrl: string;
+        }>(projectId, BackendConfiguration);
+
+        const baseUrl =
+            configuration &&
+            configuration.baseUrl &&
+            configuration.baseUrl.length > 0
+                ? configuration.baseUrl
+                : fallbackUrl;
 
         const identityService = Services.getService<IIdentityService>(
             IdentityServiceId

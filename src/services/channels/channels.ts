@@ -103,9 +103,10 @@ export interface IChannel {
     /**
      * Start a connection for the given session
      *
+     * @param projectId Id of the project
      * @param sessionId Id of the session
      */
-    start(sessionId: string): Promise<void>;
+    start(projectId: string, sessionId: string): Promise<void>;
 
     /**
      * End the connection

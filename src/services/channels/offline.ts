@@ -47,6 +47,7 @@ export class OfflineChannel implements IChannel {
 
     snapshot = defineOperation<ISnapshot>(async () => {});
 
+    private projectId: string = "";
     private sessionId: string = "";
     private estimationService: IOfflineEstimationService;
 
@@ -56,7 +57,8 @@ export class OfflineChannel implements IChannel {
         );
     }
 
-    async start(sessionId: string): Promise<void> {
+    async start(projectId: string, sessionId: string): Promise<void> {
+        this.projectId = projectId;
         this.sessionId = sessionId;
     }
 
