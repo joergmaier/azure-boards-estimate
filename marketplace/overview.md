@@ -1,6 +1,6 @@
 # Estimate 2
 
-Please file issues for any bugs/feedback here: https://github.com/cschleiden/azure-boards-estimate/
+Please file issues for any bugs/feedback here: https://github.com/hangy/azure-boards-estimate/
 
 ---
 

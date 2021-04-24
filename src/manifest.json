@@ -4,7 +4,7 @@
     "name": "Estimate 2 Preview",
     "scopes": ["vso.work", "vso.work_write"],
     "description": "",
-    "publisher": "cschleiden",
+    "publisher": "hangy",
     "id": "estimate",
     "icons": {
         "default": "marketplace/logo.png"
@@ -22,7 +22,7 @@
     },
     "links": {
         "support": {
-            "uri": "mailto:christopher.schleiden@microsoft.com"
+            "uri": "mailto:hangy@hangy.de"
         }
     },
     "branding": {
