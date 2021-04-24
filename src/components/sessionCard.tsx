@@ -11,7 +11,9 @@ import { Observer } from "azure-devops-ui/Observer";
 import { ObservableValue } from "azure-devops-ui/Core/Observable";
 
 const CardTitle: React.StatelessComponent = (props) => (
-    <h2 className="session-card--title flex-grow" {...props} />
+    <h2 className="session-card--title flex-grow" {...props}>
+        Session
+    </h2>
 );
 
 const CardMode: React.StatelessComponent = (props) => (
