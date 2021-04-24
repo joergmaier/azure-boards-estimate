@@ -19,7 +19,7 @@ function getEstimateDisplay(
     estimate?: string | number
 ): string {
     const cardIdx = cardSet.cards.findIndex(
-        (c) => estimate != null && c.value == estimate
+        (c) => estimate != null && c.value === estimate
     );
     if (cardIdx >= 0) {
         return cardSet.cards[cardIdx].identifier;
