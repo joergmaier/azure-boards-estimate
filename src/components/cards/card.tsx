@@ -2,6 +2,11 @@ import "./card.scss";
 import * as React from "react";
 import { css } from "../../lib/css";
 
+export enum CardSize {
+    small,
+    medium
+}
+
 function getWidth(size: CardSize): number {
     switch (size) {
         case CardSize.small:
@@ -30,11 +35,6 @@ function getFontSize(size: CardSize): number {
         case CardSize.medium:
             return 24;
     }
-}
-
-export enum CardSize {
-    small,
-    medium
 }
 
 export enum CardState {}
