@@ -1,5 +1,5 @@
 import { actionCreatorFactory } from "typescript-fsa";
-import { ICardSet, ICard } from "../../model/cards";
+import { ICardSet } from "../../model/cards";
 import { IEstimate, ISessionEstimates } from "../../model/estimate";
 import { ISession } from "../../model/session";
 import { IUserInfo } from "../../model/user";

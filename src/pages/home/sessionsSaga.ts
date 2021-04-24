@@ -1,5 +1,3 @@
-import { IProjectPageService } from "azure-devops-extension-api";
-import { ProjectInfo } from "azure-devops-extension-api/Core";
 import { getService } from "azure-devops-extension-sdk";
 import { SagaIterator } from "redux-saga";
 import { call, put, takeLatest, takeEvery } from "redux-saga/effects";
@@ -9,12 +7,7 @@ import { IQueriesService, QueriesServiceId } from "../../services/queries";
 import { Services } from "../../services/services";
 import { ISessionService, SessionServiceId } from "../../services/sessions";
 import { ISprintService, SprintServiceId } from "../../services/sprints";
-import {
-    IIteration,
-    ITeam,
-    ITeamService,
-    TeamServiceId
-} from "../../services/teams";
+import { ITeamService, TeamServiceId } from "../../services/teams";
 import {
     loadSessions,
     populate,

@@ -1,9 +1,6 @@
-import {
-    IGlobalMessagesService,
-    IProjectPageService
-} from "azure-devops-extension-api";
+import { IProjectPageService } from "azure-devops-extension-api";
 import { ProjectInfo } from "azure-devops-extension-api/Core";
-import { getService, IUserContext } from "azure-devops-extension-sdk";
+import { getService } from "azure-devops-extension-sdk";
 import { SagaIterator, Task } from "redux-saga";
 import {
     call,

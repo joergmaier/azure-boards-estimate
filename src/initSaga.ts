@@ -1,7 +1,6 @@
 import { SagaIterator } from "redux-saga";
 import { call, put } from "redux-saga/effects";
 import { init } from "./initActions";
-import { IIdentity } from "./model/identity";
 import { IdentityServiceId, IIdentityService } from "./services/identity";
 import { Services } from "./services/services";
 
