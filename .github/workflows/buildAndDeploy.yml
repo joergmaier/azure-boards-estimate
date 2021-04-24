@@ -17,9 +17,9 @@ jobs:
             - run: npm run lint
             - run: npm run build
             - run: npm run package-release
-            - name: Upload a Build Artifact
+            - name: Upload VSIX Build Artifact
               uses: actions/upload-artifact@v2.2.3
               with:
                   name: vsix
-                  path: "-*.vsix"
-                  if-no-files-found: fail
+                  path: ${{ github.workspace }}/*.vsix
+                  if-no-files-found: error
