@@ -13,7 +13,7 @@ const init = reducerAction(Actions.init, (state: IInitState, payload) => {
     state.currentIdentity = payload.identity;
 });
 
-export default <TPayload>(
+const reduce = <TPayload>(
     state: IInitState = initialState,
     action?: Action<TPayload>
 ) => {
@@ -21,3 +21,5 @@ export default <TPayload>(
         [Actions.init.type]: init
     });
 };
+
+export default reduce;

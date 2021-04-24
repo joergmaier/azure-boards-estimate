@@ -138,7 +138,7 @@ const reset = reducerAction(Actions.reset, (state: ICreateSessionState) => {
     });
 });
 
-export default <TPayload>(
+const reduce = <TPayload>(
     state: ICreateSessionState = initialState,
     action?: Action<TPayload>
 ) => {
@@ -161,3 +161,5 @@ export default <TPayload>(
         [Actions.setQuery.type]: setQuery
     });
 };
+
+export default reduce;

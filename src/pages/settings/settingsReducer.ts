@@ -11,7 +11,7 @@ export const initialState = {
 
 export type ISettingsState = typeof initialState;
 
-export default <TPayload>(
+const reduce = <TPayload>(
     state: ISettingsState = initialState,
     action?: Action<TPayload>
 ) => {
@@ -41,3 +41,5 @@ export default <TPayload>(
         })
     });
 };
+
+export default reduce;

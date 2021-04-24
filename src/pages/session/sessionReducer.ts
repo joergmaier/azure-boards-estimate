@@ -169,7 +169,7 @@ const estimateSet = reducerAction(
     }
 );
 
-export default <TPayload>(
+const reduce = <TPayload>(
     state: ISessionState = initialState,
     action?: Action<TPayload>
 ) => {
@@ -234,3 +234,5 @@ export default <TPayload>(
         )
     });
 };
+
+export default reduce;

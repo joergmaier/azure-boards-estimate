@@ -78,7 +78,7 @@ const clearError = reducerAction(
     }
 );
 
-export default <TPayload>(
+const reduce = <TPayload>(
     state: ISessionsState = initialState,
     action?: Action<TPayload>
 ) => {
@@ -100,3 +100,5 @@ export default <TPayload>(
         [Actions.clearError.type]: clearError
     });
 };
+
+export default reduce;
