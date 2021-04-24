@@ -46,7 +46,7 @@ export class SessionCard extends React.Component<ICardProps> {
         const {
             hideContextMenu,
             session: {
-                session: { id, mode, name, source, sourceData },
+                session: { id, mode, name, source },
                 sessionInfo
             },
             onEndSession

@@ -28,7 +28,7 @@ export class WorkItemHeader extends React.Component<IWorkItemHeaderProps> {
 
     render(): JSX.Element {
         const {
-            workItem: { id, project, title, workItemType, icon, color }
+            workItem: { id, title, workItemType, icon, color }
         } = this.props;
 
         return (
