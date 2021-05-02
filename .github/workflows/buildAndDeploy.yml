@@ -22,9 +22,9 @@ jobs:
             - run: npm run lint
             - run: npm run build
             - run: npm run package-dev
-              if: github.event_name == 'pull_request' || github.ref != 'refs/heads/main'
+              if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
             - run: npm run package-release
-              if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+              if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
             - name: Upload VSIX Build Artifact
               uses: actions/upload-artifact@v2.2.3
               with:
