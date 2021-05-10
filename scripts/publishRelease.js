@@ -1,4 +1,4 @@
-"use strict";
+
 
 var exec = require("child_process").exec;
 
@@ -20,7 +20,7 @@ exec(
             return;
         }
 
-        let output = JSON.parse(stdout);
+        const output = JSON.parse(stdout);
 
         console.log(`Package created ${output.path}`);
 

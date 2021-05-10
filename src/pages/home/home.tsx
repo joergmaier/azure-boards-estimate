@@ -49,7 +49,7 @@ class HomePage extends React.Component<IHomePageProps & typeof Actions> {
 
         this.filter = new Filter() as IFilter;
         this.filter.subscribe((state) => {
-            props.filter(state["keyword"] && state["keyword"]!.value);
+            props.filter(state.keyword && state.keyword!.value);
         });
     }
 
@@ -84,10 +84,10 @@ class HomePage extends React.Component<IHomePageProps & typeof Actions> {
                     ]}
                 />
                 <TabBar
-                    selectedTabId={"sessions"}
+                    selectedTabId="sessions"
                     onSelectedTabChanged={this.onSelectedTabChanged}
                     renderAdditionalContent={this.renderTabBarCommands}
-                    disableSticky={true}
+                    disableSticky
                 >
                     <Tab id="sessions" name="Sessions" />
                 </TabBar>
