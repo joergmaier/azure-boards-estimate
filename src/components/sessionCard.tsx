@@ -11,9 +11,8 @@ import { Observer } from "azure-devops-ui/Observer";
 import { ObservableValue } from "azure-devops-ui/Core/Observable";
 
 const CardTitle: React.StatelessComponent = (props) => (
-    <h2 className="session-card--title flex-grow" {...props}>
-        Session
-    </h2>
+    // eslint-disable-next-line jsx-a11y/heading-has-content
+    <h2 className="session-card--title flex-grow" {...props} />
 );
 
 const CardMode: React.StatelessComponent = (props) => (
@@ -90,7 +89,8 @@ export class SessionCard extends React.Component<ICardProps> {
                                                     id: "session-end",
                                                     text: "End session",
                                                     onActivate: () => {
-                                                        this.isEndSessionDialogOpen.value = true;
+                                                        this.isEndSessionDialogOpen.value =
+                                                            true;
                                                         onEndSession(id);
                                                     }
                                                 }
@@ -118,7 +118,8 @@ export class SessionCard extends React.Component<ICardProps> {
                                                     },
                                                     {
                                                         text: "End Session",
-                                                        onClick: onDismissAndEndSession
+                                                        onClick:
+                                                            onDismissAndEndSession
                                                     }
                                                 ]}
                                                 onDismiss={onDismiss}

@@ -62,23 +62,8 @@ export class SignalRChannel implements IChannel {
     async start(projectId: string, sessionId: string): Promise<void> {
         this.sessionId = sessionId;
 
-        const sessionService = Services.getService<ISessionService>(
-            SessionServiceId
-        );
-        const configuration = await sessionService.getSettingsValue<{
-            baseUrl: string;
-        }>(projectId, BackendConfiguration);
-
-        const baseUrl =
-            configuration &&
-            configuration.baseUrl &&
-            configuration.baseUrl.length > 0
-                ? configuration.baseUrl
-                : fallbackUrl;
-
-        const identityService = Services.getService<IIdentityService>(
-            IdentityServiceId
-        );
+        const identityService =
+            Services.getService<IIdentityService>(IdentityServiceId);
         const identity = await identityService.getCurrentIdentity();
 
         this.connection = new signalR.HubConnectionBuilder()

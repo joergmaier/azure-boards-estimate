@@ -1,12 +1,6 @@
 # Estimate 2
 
-Please file issues for any bugs/feedback here: https://github.com/cschleiden/azure-boards-estimate/
-
----
-
-## Important information for users of version 1 (8/23/2019):
-
-Version 1 of the extension will be turned off in a few days. Please talk to your admin to upgrade to Version 2 otherwise you won't be able to connect to sesions.
+Please file issues for any bugs/feedback here: https://github.com/hangy/azure-boards-estimate/
 
 ---
 
@@ -14,36 +8,7 @@ Play Planning Poker in Azure DevOps. Select work from an iteration, query, or yo
 
 ## Updates
 
-**8/28/2019** - 2.2.0
-
--   Allow restricting selecting work items/commiting values to the creator of the session [#43](https://github.com/cschleiden/azure-boards-estimate/issues/43)
-
-**7/3/2019** - 2.1.0
-
--   Public release of **Estimate 2**
-
-**2/1/2019** - 2.0.0
-
--   First beta release of the new Estimate version
-
-**11/3/2016** - 1.0.19
-
--   Fixes backend connection problems.
-
-**4/5/2016** - 1.0.13
-
--   Improved support for projects created from an [inherited process](https://msdn.microsoft.com/en-us/library/vs/alm/work/process/manage-process).
-
-**4/2/2016** - 1.0.11
-
--   Bugfixes for projects created from CMMI template
-
-**3/27/2016** - 1.0.8
-
--   Performance optimizations
--   Non-numeric card selections are now indicated as a warning when being revealed:
-    ![Warning](marketplace/images/updates/warning.gif)
--   Improved support for Internet Explorer 11 when revealing cards
+See Release Notes at https://github.com/hangy/azure-boards-estimate/releases
 
 ## Estimate work items from your backlog...
 

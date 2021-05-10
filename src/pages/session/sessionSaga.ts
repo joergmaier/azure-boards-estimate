@@ -55,9 +55,8 @@ export function* sessionSaga(action: ReturnType<typeof loadSession>) {
         ]);
 
         // Get session
-        const sessionService = Services.getService<ISessionService>(
-            SessionServiceId
-        );
+        const sessionService =
+            Services.getService<ISessionService>(SessionServiceId);
 
         let session: ISession | undefined;
         session = yield call(
@@ -66,21 +65,12 @@ export function* sessionSaga(action: ReturnType<typeof loadSession>) {
         );
 
         if (!session) {
-            // Check if it's a legacy session
-            session = yield call(
-                [sessionService, sessionService.getLegacySessions],
-                action.payload
-            );
-        }
-
-        if (!session) {
             throw new Error("Could not load session");
         }
 
         // Load cardset
-        const cardService = Services.getService<ICardSetService>(
-            CardSetServiceId
-        );
+        const cardService =
+            Services.getService<ICardSetService>(CardSetServiceId);
         const cardSet: ICardSet = yield call(
             [cardService, cardService.getSet],
             session.cardSet
@@ -93,15 +83,13 @@ export function* sessionSaga(action: ReturnType<typeof loadSession>) {
 
         switch (session.source) {
             case SessionSource.Sprint: {
-                const sprintService = Services.getService<ISprintService>(
-                    SprintServiceId
-                );
+                const sprintService =
+                    Services.getService<ISprintService>(SprintServiceId);
 
                 if (session.sourceData) {
-                    const [
-                        teamId,
-                        iterationId
-                    ] = (session.sourceData as string).split(";");
+                    const [teamId, iterationId] = (
+                        session.sourceData as string
+                    ).split(";");
 
                     if (teamId && iterationId) {
                         workItemIds = yield call(
@@ -124,9 +112,8 @@ export function* sessionSaga(action: ReturnType<typeof loadSession>) {
 
             case SessionSource.Query: {
                 if (session.sourceData) {
-                    const queriesService = Services.getService<IQueriesService>(
-                        QueriesServiceId
-                    );
+                    const queriesService =
+                        Services.getService<IQueriesService>(QueriesServiceId);
                     workItemIds = yield call(
                         [queriesService, queriesService.runQuery],
                         projectInfo.id,
@@ -140,9 +127,8 @@ export function* sessionSaga(action: ReturnType<typeof loadSession>) {
                 throw new Error("Unexpected session source");
         }
 
-        const workItemService = Services.getService<IWorkItemService>(
-            WorkItemServiceId
-        );
+        const workItemService =
+            Services.getService<IWorkItemService>(WorkItemServiceId);
         const workItems: IWorkItem[] = yield call(
             [workItemService, workItemService.getWorkItems],
             workItemIds
@@ -159,9 +145,8 @@ export function* sessionSaga(action: ReturnType<typeof loadSession>) {
         yield put(updateStatus("Connected."));
 
         // Session is now loaded
-        const identityService = Services.getService<IIdentityService>(
-            IdentityServiceId
-        );
+        const identityService =
+            Services.getService<IIdentityService>(IdentityServiceId);
         const identity: IIdentity = yield call([
             identityService,
             identityService.getCurrentIdentity
@@ -196,9 +181,8 @@ export function* sessionSaga(action: ReturnType<typeof loadSession>) {
 
         switch (a.type) {
             case endSession.type: {
-                const sessionService = Services.getService<ISessionService>(
-                    SessionServiceId
-                );
+                const sessionService =
+                    Services.getService<ISessionService>(SessionServiceId);
                 yield call(
                     [sessionService, sessionService.removeSession],
                     session.id
@@ -249,9 +233,8 @@ function* sessionEstimationSaga(): SagaIterator {
 
         try {
             // Save estimate to work item
-            const workItemService = Services.getService<IWorkItemService>(
-                WorkItemServiceId
-            );
+            const workItemService =
+                Services.getService<IWorkItemService>(WorkItemServiceId);
             yield call(
                 [workItemService, workItemService.saveEstimate],
                 workItem.id,

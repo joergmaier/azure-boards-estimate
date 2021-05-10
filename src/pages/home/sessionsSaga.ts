@@ -24,20 +24,14 @@ export function* rootSessionsSaga() {
 }
 
 export function* initSaga(): SagaIterator {
-    const sessionService = Services.getService<ISessionService>(
-        SessionServiceId
-    );
+    const sessionService =
+        Services.getService<ISessionService>(SessionServiceId);
     const sessions: any = yield call([
         sessionService,
         sessionService.getSessions
     ]);
 
-    const legacySessions: any = yield call([
-        sessionService,
-        sessionService.getLegacySessions
-    ]);
-
-    yield put(populate({ sessions, legacySessions }));
+    yield put(populate({ sessions }));
 
     //
     // Resolve session sources
@@ -64,9 +58,8 @@ export function* initSaga(): SagaIterator {
         .filter((x: [string, string]) => x[0] && x[1]);
 
     if (teamAndIterationIds && teamAndIterationIds.length > 0) {
-        const sprintService = Services.getService<ISprintService>(
-            SprintServiceId
-        );
+        const sprintService =
+            Services.getService<ISprintService>(SprintServiceId);
         const iterations: any = yield call(
             [sprintService, sprintService.getIterations],
             projectInfo.id,
@@ -91,9 +84,8 @@ export function* initSaga(): SagaIterator {
         .map((s: ISession) => s.sourceData as string);
 
     if (queryIds && queryIds.length > 0) {
-        const queriesService = Services.getService<IQueriesService>(
-            QueriesServiceId
-        );
+        const queriesService =
+            Services.getService<IQueriesService>(QueriesServiceId);
 
         const queries: any = yield call(
             [queriesService, queriesService.getQueries],
@@ -105,9 +97,8 @@ export function* initSaga(): SagaIterator {
 }
 
 function* deleteSaga(action: ReturnType<typeof deleteSession>): SagaIterator {
-    const sessionService = Services.getService<ISessionService>(
-        SessionServiceId
-    );
+    const sessionService =
+        Services.getService<ISessionService>(SessionServiceId);
     yield call([sessionService, sessionService.removeSession], action.payload);
 
     yield put(loadSessions());

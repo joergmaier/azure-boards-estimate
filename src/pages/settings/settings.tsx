@@ -109,9 +109,7 @@ class SettingsPanel extends React.Component<
             estimationFieldRefName: item.data!.referenceName
         });
     };
-    private onBaseUrlChange = (
-        baseUrl: string
-    )  => {
+    private onBaseUrlChange = (baseUrl: string) => {
         this.props.setBackendUrl({
             baseUrl: baseUrl
         });
@@ -153,9 +151,7 @@ class SettingsPanel extends React.Component<
 
                         <TextField
                             value={this.props.baseUrl}
-                            onSelect={this.onBaseUrlChange.bind(
-                                this
-                            )}
+                            onSelect={this.onBaseUrlChange.bind(this)}
                         />
                         <Table<IWorkItemType>
                             columns={this.columns}

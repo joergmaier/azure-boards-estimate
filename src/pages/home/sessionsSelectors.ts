@@ -18,10 +18,9 @@ export function getDisplaySessions(
         switch (session.source) {
             case SessionSource.Sprint: {
                 if (session.sourceData) {
-                    const [
-                        teamId,
-                        iterationId
-                    ] = (session.sourceData as string).split(";");
+                    const [teamId, iterationId] = (
+                        session.sourceData as string
+                    ).split(";");
 
                     // Team
                     const team = getLookupValue(state.teamLookup || {}, teamId);
@@ -67,8 +66,4 @@ export function getDisplaySessions(
 
 export function getSessions(state: ISessionsState): ISessionDisplay[] {
     return getDisplaySessions(state, state.sessions);
-}
-
-export function getLegacySessions(state: ISessionsState): ISessionDisplay[] {
-    return getDisplaySessions(state, state.legacySessions);
 }
