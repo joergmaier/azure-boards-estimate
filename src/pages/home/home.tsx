@@ -6,7 +6,7 @@ import { MessageCard, MessageCardSeverity } from "azure-devops-ui/MessageCard";
 import { Page } from "azure-devops-ui/Page";
 import { Tab, TabBar } from "azure-devops-ui/Tabs";
 import { KeywordFilterBarItem } from "azure-devops-ui/TextFilterBarItem";
-import { Filter } from "azure-devops-ui/Utilities/Filter";
+import { Filter, IFilter } from "azure-devops-ui/Utilities/Filter";
 import * as React from "react";
 import { connect } from "react-redux";
 import CreatePanel from "../../components/create/panel";
@@ -41,13 +41,13 @@ const Actions = {
 };
 
 class HomePage extends React.Component<IHomePageProps & typeof Actions> {
-    filter: Filter;
+    filter: IFilter;
     filterToggled = new ObservableValue<boolean>(false);
 
     constructor(props: IHomePageProps & typeof Actions) {
         super(props);
 
-        this.filter = new Filter();
+        this.filter = new Filter() as IFilter;
         this.filter.subscribe((state) => {
             props.filter(state["keyword"] && state["keyword"]!.value);
         });
