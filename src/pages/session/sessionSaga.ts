@@ -58,8 +58,7 @@ export function* sessionSaga(action: ReturnType<typeof loadSession>) {
         const sessionService =
             Services.getService<ISessionService>(SessionServiceId);
 
-        let session: ISession | undefined;
-        session = yield call(
+        const session: ISession | undefined = yield call(
             [sessionService, sessionService.getSession],
             action.payload
         );
