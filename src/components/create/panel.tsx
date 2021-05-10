@@ -163,7 +163,7 @@ class CreatePanel extends React.Component<
             <Panel
                 titleProps={{
                     text: "Create new session",
-                    //@ts-ignore
+                    // @ts-ignore
                     size: TitleSize.Large
                 }}
                 onDismiss={onDismiss}
@@ -332,6 +332,7 @@ class CreatePanel extends React.Component<
         const { onSetMode } = this.props;
         onSetMode(parseInt(option.key, 10) as SessionMode);
     };
+
     private onChangeSource = (option: IChoiceGroupOption) => {
         const { onSetSource } = this.props;
         onSetSource(parseInt(option.key, 10) as SessionSource);

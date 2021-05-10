@@ -97,6 +97,7 @@ class SettingsPanel extends React.Component<
             width: -50
         }
     ];
+
     private onSelect = (
         workItemType: IWorkItemType,
         event: React.SyntheticEvent<HTMLElement>,
