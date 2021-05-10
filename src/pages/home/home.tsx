@@ -85,7 +85,7 @@ class HomePage extends React.Component<IHomePageProps & typeof Actions> {
                 />
                 <TabBar
                     selectedTabId="sessions"
-                    onSelectedTabChanged={this.onSelectedTabChanged}
+                    onSelectedTabChanged={this.handleSelectedTabChanged}
                     renderAdditionalContent={this.renderTabBarCommands}
                     disableSticky
                 >
@@ -117,7 +117,7 @@ class HomePage extends React.Component<IHomePageProps & typeof Actions> {
 
                 {match.path.indexOf("/create") !== -1 && (
                     <CreatePanel
-                        onDismiss={this.closeCreate}
+                        onDismiss={this.handleDismissCreate}
                         workItemIds={
                             (this.props.match.params.ids &&
                                 this.props.match.params.ids
@@ -129,18 +129,18 @@ class HomePage extends React.Component<IHomePageProps & typeof Actions> {
                 )}
 
                 {match.path.indexOf("/settings") !== -1 && (
-                    <SettingsPanel onDismiss={this.closeSettings} />
+                    <SettingsPanel onDismiss={this.handleDismissSettings} />
                 )}
             </Page>
         );
     }
 
-    private onFilterBarDismissClicked = () => {
+    private handleFilterBarDismissClicked = () => {
         this.filter.reset();
         this.filterToggled.value = false;
     };
 
-    private onSelectedTabChanged = () => {};
+    private handleSelectedTabChanged = () => {};
 
     private renderTabBarCommands = () => {
         return (
@@ -148,7 +148,7 @@ class HomePage extends React.Component<IHomePageProps & typeof Actions> {
                 <FilterBar
                     className="bolt-filterbar-white depth-8"
                     filter={this.filter}
-                    onDismissClicked={this.onFilterBarDismissClicked}
+                    onDismissClicked={this.handleFilterBarDismissClicked}
                 >
                     <KeywordFilterBarItem filterItemKey="keyword" />
                 </FilterBar>
@@ -166,12 +166,12 @@ class HomePage extends React.Component<IHomePageProps & typeof Actions> {
         history.push("/settings");
     };
 
-    private closeCreate = () => {
+    private handleDismissCreate = () => {
         const { history } = this.props;
         history.push("/");
     };
 
-    private closeSettings = () => {
+    private handleDismissSettings = () => {
         const { history } = this.props;
         history.push("/");
     };
