@@ -97,6 +97,7 @@ class SettingsPanel extends React.Component<
             width: -50
         }
     ];
+
     private onSelect = (
         workItemType: IWorkItemType,
         event: React.SyntheticEvent<HTMLElement>,
@@ -122,7 +123,7 @@ class SettingsPanel extends React.Component<
                     // @ts-ignore
                     size: TitleSize.Large
                 }}
-                onDismiss={this.onDismiss}
+                onDismiss={this.handleDismiss}
                 blurDismiss={false}
                 contentClassName="custom-scrollbar"
             >
@@ -154,7 +155,7 @@ class SettingsPanel extends React.Component<
         );
     }
 
-    private onDismiss = () => {
+    private handleDismiss = () => {
         this.props.close();
 
         const { onDismiss } = this.props;
